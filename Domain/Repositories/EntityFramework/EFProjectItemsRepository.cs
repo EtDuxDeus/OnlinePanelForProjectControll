@@ -2,29 +2,30 @@
 using OnlinePanelForProjectsControl.Domain.Entities;
 using OnlinePanelForProjectsControl.Domain.Repositories.Abstract;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace OnlinePanelForProjectsControl.Domain.Repositories.EntityFramework
 {
-    public class EFServiceItemsRepository : IServiceItemsRepository
+    public class EFProjectItemsRepository : IProjectItemsRepository
     {
         private readonly AppDbContext context;
-        public EFServiceItemsRepository(AppDbContext context)
+        public EFProjectItemsRepository(AppDbContext context)
         {
             this.context = context;
         }
 
-        public IQueryable<ServiceItem> GetServiceItems()
+        public IQueryable<ProjectItem> GetProjectItems()
         {
-            return context.ServiceItems;
+            return context.ProjectItems;
         }
 
-        public ServiceItem GetServiceItemById(Guid id)
+        public ProjectItem GetProjectItemById(Guid id)
         {
-            return context.ServiceItems.FirstOrDefault(x => x.Id == id);
+            return context.ProjectItems.FirstOrDefault(x => x.Id == id);
         }
 
-        public void SaveServiceItem(ServiceItem entity)
+        public void SaveProjectItem(ProjectItem entity)
         {
             if (entity.Id == default)
                 context.Entry(entity).State = EntityState.Added;
@@ -33,10 +34,10 @@ namespace OnlinePanelForProjectsControl.Domain.Repositories.EntityFramework
             context.SaveChanges();
         }
 
-        public void DeleteServiceItem(Guid id)
+        public void DeleteProjectItem(Guid id)
         {
-            context.ServiceItems.Remove(new ServiceItem() { Id = id });
+            context.ProjectItems.Remove(new ProjectItem() { Id = id });
             context.SaveChanges();
         }
-    }
+	}
 }

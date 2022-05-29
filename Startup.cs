@@ -22,7 +22,8 @@ namespace OnlinePanelForProjectsControl
 			Configuration.Bind("Project", new Config());
 
 			services.AddTransient<ITextFieldsRepository, EFTextFieldsRepository>();
-			services.AddTransient<IServiceItemsRepository, EFServiceItemsRepository>();
+			services.AddTransient<IProjectItemsRepository, EFProjectItemsRepository>();
+			services.AddTransient<IProjectTasksRepository, EFProjecTasksRepository>();
 			services.AddTransient<DataManager>();
 
 			services.AddDbContext<AppDbContext>(x => x.UseSqlServer(Config.ConnectionString));
@@ -49,6 +50,7 @@ namespace OnlinePanelForProjectsControl
 			services.AddAuthorization(x =>
 			{
 				x.AddPolicy("AdminArea", policy => { policy.RequireRole("admin"); });
+				x.AddPolicy("UserArea", policy => { policy.RequireRole("user"); });
 			});
 
 			services.AddControllersWithViews(x=>

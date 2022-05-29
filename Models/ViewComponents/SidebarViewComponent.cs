@@ -18,7 +18,7 @@ namespace OnlinePanelForProjectsControl.Models.ViewComponents
 
         public Task<IViewComponentResult> InvokeAsync()
         {
-            return Task.FromResult((IViewComponentResult)View("Default", dataManager.ServiceItems.GetServiceItems()));
+            return Task.FromResult((IViewComponentResult)View("Default", dataManager.ProjectItems.GetProjectItems()));
         }
     }
 }

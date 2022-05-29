@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace OnlinePanelForProjectsControl.Domain.Repositories.Abstract
 {
-	public interface IServiceItemsRepository
+	public interface IProjectItemsRepository
 	{
-		IQueryable<ServiceItem> GetServiceItems();
-		ServiceItem GetServiceItemById(Guid id);
-		void SaveServiceItem(ServiceItem entity);
-		void DeleteServiceItem(Guid id);
+		IQueryable<ProjectItem> GetProjectItems();
+		ProjectItem GetProjectItemById(Guid id);
+		void SaveProjectItem(ProjectItem entity);
+		void DeleteProjectItem(Guid id);
 	}
 }

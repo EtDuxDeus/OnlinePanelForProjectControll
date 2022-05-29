@@ -1,0 +1,13 @@
+﻿@model ProjectTask
+@{
+    string strTitle = "Перегляд завдання";
+    ViewBag.Tite = strTitle;
+}
+<div>
+    <h2>
+        @Model.TaskName
+    </h2>
+    <p>@Model.TaskDescription</p>
+    <label>Виконано?</label>
+    <input type="checkbox" value="@Model.isFinished" />
+</div>

@@ -9,12 +9,14 @@ namespace OnlinePanelForProjectsControl.Domain
 	public class DataManager
 	{
 		public ITextFieldsRepository TextFields { get; set; }
-		public IServiceItemsRepository ServiceItems { get; set; }
+		public IProjectItemsRepository ProjectItems { get; set; }
+		public IProjectTasksRepository ProjectTasks { get; set; }
 
-		public DataManager(ITextFieldsRepository textFieldsRepository, IServiceItemsRepository serviceItemsRepository)
+		public DataManager(ITextFieldsRepository textFieldsRepository, IProjectItemsRepository projectItemsRepository, IProjectTasksRepository projectTasksRepository)
 		{
 			TextFields = textFieldsRepository;
-			ServiceItems = serviceItemsRepository;
+			ProjectItems = projectItemsRepository;
+			ProjectTasks = projectTasksRepository;
 		}
 	}
 }

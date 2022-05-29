@@ -1,0 +1,60 @@
+﻿@model ProjectItem
+@{
+    ViewBag.Title = Model.MetaTitle;
+    ViewBag.Description = Model.MetaDescription;
+    ViewBag.Keywords = Model.MetaKeywords;
+}
+<div>
+    <h2>
+        @Model.Title
+    </h2>
+    <h2>
+        @Model.Subtitle
+    </h2>
+    <div>
+        <img class="img-block" src="~/images/@Model.TitleImagePath" />
+    </div>
+        <table class="TaskTable">
+            <thead>
+            <th>
+                <label>Назва задачі</label>
+            </th>
+            <th>
+                <label>Опис задачі</label>
+            </th>
+            <th>
+                <label>Дата Початку</label>
+            </th>
+            <th>
+                <label">Дата закінчення</label">
+            </th>
+            <th>
+                <label>Задача виконана?</label>
+            </th>
+            </thead>
+
+            @for (int i = 0; i < Model.ProjectTasks.Count; i++)
+            {
+                <tr>
+                    <td>
+                        <label>@Model.ProjectTasks[i].TaskName</label>
+                    </td>
+                    <td>
+                        @Html.Raw(Model.ProjectTasks[i].TaskDescription)
+                    </td>
+                    <td>
+                        <input readonly asp-for="@Model.ProjectTasks[i].DateOfStart" />
+                    </td>
+                    <td>
+                        <input readonly asp-for="@Model.ProjectTasks[i].DateOfEnd" />
+                    </td>
+                    <td>
+                        <input readonly type="checkbox" asp-for="@Model.ProjectTasks[i].isFinished" />
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+<div>
+    @Html.Raw(Model.Text)
+</div>

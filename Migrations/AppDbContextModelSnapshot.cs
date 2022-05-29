@@ -49,9 +49,16 @@ namespace OnlinePanelForProjectsControl.Migrations
                         new
                         {
                             Id = "8af10569-b018-4fe7-a380-7d6a14c70b74",
-                            ConcurrencyStamp = "35b96617-4980-4d88-a32c-34124b4c991e",
+                            ConcurrencyStamp = "212acb4b-3a5c-417b-8e6d-6a83a29e9498",
                             Name = "admin",
                             NormalizedName = "ADMIN"
+                        },
+                        new
+                        {
+                            Id = "f917fd6d-a7f9-4212-bbe7-c193cf061ef0",
+                            ConcurrencyStamp = "c466faff-84f4-4bf1-8bf7-69a35d835ea1",
+                            Name = "user",
+                            NormalizedName = "USER"
                         });
                 });
 
@@ -148,17 +155,33 @@ namespace OnlinePanelForProjectsControl.Migrations
                         {
                             Id = "3b62472e-4f66-49fa-a20f-e7685b9565d8",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "fbd25796-40d2-4509-b139-df6ba3cb7e09",
+                            ConcurrencyStamp = "452e4f56-a6ae-4ae2-84fd-0f7c685578f2",
                             Email = "my@email.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "MY@EMAIl.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEL/lQ9/Vc/vyDDlKC0Sny8sTRTgRpu1qbBnIz2zvGqcr3y6bSzQHJDOOW74aTVg+zw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHmsUmJyDy8tMpb1fRugilcvbF4sMdnoQ2tAckEh4FuK5Z6zqzvRECCmz88VWxUUJA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
                             UserName = "admin"
+                        },
+                        new
+                        {
+                            Id = "451219dc-97d0-4f3a-90d3-a6b3a0d36c6b",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "6617c9d8-c9b8-46e7-be2e-38744b8948c3",
+                            Email = "user@email.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "USER@EMAIL.COM",
+                            NormalizedUserName = "USER",
+                            PasswordHash = "AQAAAAEAACcQAAAAEG2sgHVXbXORbtn0nsNfyQl6BlJpB4+xPWGuKOyHqy0c7/QagGjN1eLnCoifLK+cpA==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "",
+                            TwoFactorEnabled = false,
+                            UserName = "user"
                         });
                 });
 
@@ -227,6 +250,11 @@ namespace OnlinePanelForProjectsControl.Migrations
                         {
                             UserId = "3b62472e-4f66-49fa-a20f-e7685b9565d8",
                             RoleId = "8af10569-b018-4fe7-a380-7d6a14c70b74"
+                        },
+                        new
+                        {
+                            UserId = "451219dc-97d0-4f3a-90d3-a6b3a0d36c6b",
+                            RoleId = "f917fd6d-a7f9-4212-bbe7-c193cf061ef0"
                         });
                 });
 
@@ -249,7 +277,7 @@ namespace OnlinePanelForProjectsControl.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("OnlinePanelForProjectsControl.Domain.Entities.ServiceItem", b =>
+            modelBuilder.Entity("OnlinePanelForProjectsControl.Domain.Entities.ProjectItem", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -282,7 +310,50 @@ namespace OnlinePanelForProjectsControl.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ServiceItems");
+                    b.ToTable("ProjectItems");
+                });
+
+            modelBuilder.Entity("OnlinePanelForProjectsControl.Domain.Entities.ProjectTask", b =>
+                {
+                    b.Property<Guid>("TaskID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DateOfEnd")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateOfStart")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("ProjectId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("TaskDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TaskName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("isFinished")
+                        .HasColumnType("bit");
+
+                    b.HasKey("TaskID");
+
+                    b.HasIndex("ProjectId");
+
+                    b.ToTable("ProjectTasks");
+
+                    b.HasData(
+                        new
+                        {
+                            TaskID = new Guid("a37182eb-dabb-43e0-8952-c662fa5e634e"),
+                            DateOfEnd = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateOfStart = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ProjectId = new Guid("713dcd88-126d-4671-1ed1-08da40a5c328"),
+                            TaskDescription = "Опис таску",
+                            TaskName = "Тест Тасков",
+                            isFinished = false
+                        });
                 });
 
             modelBuilder.Entity("OnlinePanelForProjectsControl.Domain.Entities.TextField", b =>
@@ -328,23 +399,23 @@ namespace OnlinePanelForProjectsControl.Migrations
                         {
                             Id = new Guid("63dc8fa6-07ae-4391-8916-e057f71239ce"),
                             CodeWord = "PageIndex",
-                            DateAdded = new DateTime(2022, 5, 21, 16, 28, 44, 304, DateTimeKind.Utc).AddTicks(6317),
+                            DateAdded = new DateTime(2022, 5, 29, 18, 1, 25, 650, DateTimeKind.Utc).AddTicks(456),
                             Text = "Содержание заполняется администратором",
                             Title = "Главная"
                         },
                         new
                         {
-                            Id = new Guid("70bf165a-700a-4156-91c0-e83fce0a277f"),
-                            CodeWord = "PageServices",
-                            DateAdded = new DateTime(2022, 5, 21, 16, 28, 44, 304, DateTimeKind.Utc).AddTicks(7248),
+                            Id = new Guid("ccc0d57c-b438-499c-964b-1a542a908894"),
+                            CodeWord = "PageProjects",
+                            DateAdded = new DateTime(2022, 5, 29, 18, 1, 25, 650, DateTimeKind.Utc).AddTicks(1292),
                             Text = "Содержание заполняется администратором",
-                            Title = "Наши услуги"
+                            Title = "Проекты"
                         },
                         new
                         {
                             Id = new Guid("4aa76a4c-c59d-409a-84c1-06e6487a137a"),
                             CodeWord = "PageContacts",
-                            DateAdded = new DateTime(2022, 5, 21, 16, 28, 44, 304, DateTimeKind.Utc).AddTicks(7292),
+                            DateAdded = new DateTime(2022, 5, 29, 18, 1, 25, 650, DateTimeKind.Utc).AddTicks(1329),
                             Text = "Содержание заполняется администратором",
                             Title = "Контакты"
                         });
@@ -397,6 +468,15 @@ namespace OnlinePanelForProjectsControl.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("OnlinePanelForProjectsControl.Domain.Entities.ProjectTask", b =>
+                {
+                    b.HasOne("OnlinePanelForProjectsControl.Domain.Entities.ProjectItem", "ProjectItem")
+                        .WithMany("ProjectTasks")
+                        .HasForeignKey("ProjectId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

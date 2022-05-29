@@ -1,0 +1,58 @@
+﻿@model ProjectTask
+@{ 
+    string strTitle = "Редагувати завдання";
+    ViewBag.Title = strTitle;
+}
+
+<script src="~/js/ckeditor/ckeditor.js"></script>
+
+<div>
+    <h2>@strTitle</h2>
+    <div>
+        <form asp-area="Admin" asp-controller="ProjectTasks" asp-action="Edit" method="post" enctype="multipart/form-data">
+            <input type="hidden" asp-for="TaskID" />
+            <input type="hidden" asp-for="ProjectItem" />
+
+            <div asp-validation-summary="All"></div>
+            <div class="div-box">
+                <label asp-for="TaskName"></label>
+                <input asp-for="TaskName"/>
+                <span asp-validation-for="TaskName"></span>
+            </div>
+            <div class="div-box">
+                <label asp-for="ProjectId"></label>
+                <input asp-for="ProjectId" />
+                <span asp-validation-for="ProjectId"></span>
+            </div>
+            <div class="div-box">
+                <label asp-for="TaskDescription"></label>
+                <textarea asp-for="TaskDescription"></textarea>
+                <span asp-validation-for="TaskDescription"></span>
+            </div>
+            <div class="div-box">
+                <label asp-for="DateOfStart"></label>
+                <input asp-for="DateOfStart" />
+                <span asp-validation-for="DateOfStart"></span>
+            </div>
+            <div class="div-box">
+                <label asp-for="DateOfEnd"></label>
+                <input asp-for="DateOfEnd" />
+                <span asp-validation-for="DateOfEnd"></span>
+            </div>
+            <div class="div-box">
+                <label asp-for="isFinished"></label>
+                <input type="checkbox" asp-for="isFinished" />
+                <span asp-validation-for="isFinished"></span>
+            </div>
+            <input type="submit" value="Зберегти" />
+        </form>
+    </div>
+</div>
+
+
+<script>
+    window.onload = function() {
+        var newCKEdit = CKEDITOR.replace('@Html.IdFor(x=>x.TaskDescription)');
+        newCKEdit.updateElement();
+    }
+</script>

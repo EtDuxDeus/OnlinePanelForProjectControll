@@ -13,7 +13,10 @@
                     <div class="col-8 col-12-medium">
                         @RenderBody()
                     </div>
-                    @await Html.PartialAsync("SidebarPartial")
+                    @if (User.IsInRole("admin") | User.IsInRole("user"))
+                    {
+                        @await Html.PartialAsync("SidebarPartial")
+                    }
                 </div>
             </div>
         </div>
