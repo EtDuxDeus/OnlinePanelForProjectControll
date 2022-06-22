@@ -28,20 +28,27 @@ using OnlinePanelForProjectsControl.Service;
 #nullable disable
 #nullable restore
 #line 4 "D:\Projects\OnlinePanelForProjectsControl\Views\_ViewImports.cshtml"
-using OnlinePanelForProjectsControl.Domain.Entities;
+using OnlinePanelForProjectsControl.Domain;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 5 "D:\Projects\OnlinePanelForProjectsControl\Views\_ViewImports.cshtml"
+using OnlinePanelForProjectsControl.Domain.Entities;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 6 "D:\Projects\OnlinePanelForProjectsControl\Views\_ViewImports.cshtml"
 using OnlinePanelForProjectsControl.Models.ViewComponents;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"c38de83f147317e6bf88453de51b3772b4f329b9", @"/Views/Shared/CssPartial.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"d9fdf69cb47a0d00958b81fe95f2fc3dabd0464f", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"5b4bc9956248d380512f6400dd477e135b966b48", @"/Views/_ViewImports.cshtml")]
     public class Views_Shared_CssPartial : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("rel", new global::Microsoft.AspNetCore.Html.HtmlString("stylesheet"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -71,7 +78,7 @@ using OnlinePanelForProjectsControl.Models.ViewComponents;
         #pragma warning disable 1998
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "c38de83f147317e6bf88453de51b3772b4f329b94290", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "c38de83f147317e6bf88453de51b3772b4f329b94483", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();

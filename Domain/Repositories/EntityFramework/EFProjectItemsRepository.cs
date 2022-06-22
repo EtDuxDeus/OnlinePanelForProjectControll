@@ -22,8 +22,15 @@ namespace OnlinePanelForProjectsControl.Domain.Repositories.EntityFramework
 
         public ProjectItem GetProjectItemById(Guid id)
         {
-            return context.ProjectItems.FirstOrDefault(x => x.Id == id);
+            var entity = context.ProjectItems.FirstOrDefault(x => x.Id == id);
+            context.Entry(entity).State = EntityState.Detached;
+            return entity;
         }
+
+        public IQueryable<ProjectItem> GetAssignedProjects(string userId)
+		{
+            return context.ProjectTasks.Where(x => x.DeveloperId == userId).Select(x => x.ProjectItem);
+		}
 
         public void SaveProjectItem(ProjectItem entity)
         {

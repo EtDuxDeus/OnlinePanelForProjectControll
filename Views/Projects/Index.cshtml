@@ -1,26 +1,30 @@
 ﻿@model IQueryable<ProjectItem>
 @{
-    TextField textField = ViewBag.TextField;
-
-    ViewBag.Title = textField.MetaTitle;
-    ViewBag.Description = textField.MetaDescription;
-    ViewBag.Keywords = textField.MetaKeywords;
+    string strTitle = "Проекти";
+    ViewBag.Title = strTitle;
 }
 
 <div>
+    <h2>@strTitle</h2>
+    <div>
     @if (Model.Any())
     {
         <ul class="big-image-list">
             @foreach (ProjectItem entity in Model)
             {
+                <a asp-area="" asp-controller="Projects" asp-action="Index" asp-route-id="@entity.Id">
                 <li>
-                    <a asp-area="" asp-controller="Projects" asp-action="Index" asp-route-id="@entity.Id">
-                        <img src="~/images/@entity.TitleImagePath" alt="" class="left" />
-                    </a>
-                    <h4>@entity.Title</h4>
+                    @if (@entity.TitleImagePath != null)
+                    {
+                        <img width="200" src="~/images/@entity.TitleImagePath" alt="" class="left" />
+                    }
+                    <h3>@entity.Title</h3>
                     <p>@entity.Subtitle</p>
                 </li>
+                </a>
+                <hr>
             }
         </ul>
     }
+    </div>
 </div>

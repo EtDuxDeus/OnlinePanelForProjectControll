@@ -1,6 +1,6 @@
 ﻿@model ProjectItem
 @{
-    string strTitle = "Редактировать запись";
+    string strTitle = "Редагувати проект";
     ViewBag.Title = strTitle;
 }
 
@@ -31,31 +31,22 @@
                 <span asp-validation-for="Text"></span>
             </div>
             <div class="div-box">
+                <label asp-for="DateOfStart"></label>
+                <input asp-for="DateOfStart"></input>
+                <span asp-validation-for="DateOfStart"></span>
+            </div>
+            <div class="div-box">
+                <label asp-for="PlannedDateOfEnd"></label>
+                <input asp-for="PlannedDateOfEnd"></input>
+                <span asp-validation-for="PlannedDateOfEnd"></span>
+            </div>
+            <div class="div-box">
                 <label asp-for="TitleImagePath"></label>
                 <input type="file" name="titleImageFile" id="titleImageFile" />
                 <div>
                     <img class="img-block" src="~/images/@Model.TitleImagePath" />
                 </div>
             </div>
-            <table>
-                <tr>
-                    <th>
-                        <h3>Таски</h3>
-                    </th>
-                </tr>
-                @for (int i = 0; i < Model.ProjectTasks.Count; i++)
-                {
-                    <tr>
-                        <th>
-                            @Model.ProjectTasks[i].TaskName;
-                        </th>
-                        <th>
-                            <a asp-area="Admin" asp-controller="ProjectTasks" asp-action="Edit" asp-route-id="@Model.ProjectTasks[i].TaskID" asp-route-projectId="@Model.Id">Редагувати</a>
-                        </th>
-                    </tr>
-                }
-            </table>
-            <a asp-area="Admin" asp-controller="ProjectTasks" asp-action="Edit" asp-route-projectId="@Model.Id">Додати Таск</a>
             <div class="div-box">
                 <label asp-for="MetaTitle"></label>
                 <input asp-for="MetaTitle" />

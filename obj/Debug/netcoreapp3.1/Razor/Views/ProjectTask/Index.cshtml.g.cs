@@ -28,20 +28,27 @@ using OnlinePanelForProjectsControl.Service;
 #nullable disable
 #nullable restore
 #line 4 "D:\Projects\OnlinePanelForProjectsControl\Views\_ViewImports.cshtml"
-using OnlinePanelForProjectsControl.Domain.Entities;
+using OnlinePanelForProjectsControl.Domain;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 5 "D:\Projects\OnlinePanelForProjectsControl\Views\_ViewImports.cshtml"
+using OnlinePanelForProjectsControl.Domain.Entities;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 6 "D:\Projects\OnlinePanelForProjectsControl\Views\_ViewImports.cshtml"
 using OnlinePanelForProjectsControl.Models.ViewComponents;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"d32e1ef768159f3739057c0444fb188b35c8db7a", @"/Views/ProjectTask/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"d9fdf69cb47a0d00958b81fe95f2fc3dabd0464f", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"5b4bc9956248d380512f6400dd477e135b966b48", @"/Views/_ViewImports.cshtml")]
     public class Views_ProjectTask_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<ProjectTask>
     {
         #pragma warning disable 1998

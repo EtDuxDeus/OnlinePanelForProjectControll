@@ -4,7 +4,13 @@
     ViewBag.Description = Model.MetaDescription;
     ViewBag.Keywords = Model.MetaKeywords;
 }
-
-<div>
-    @Html.Raw(Model.Text)
-</div>
+@if (User.Identity.IsAuthenticated)
+{
+    <div>
+        @Html.Raw(Model.Text)
+    </div>
+}
+else
+{
+    <h2>Для роботи з сайтом потрібно бути <a asp-area="" asp-controller="Account" asp-action="Login">авторизованим</a></h2>
+}

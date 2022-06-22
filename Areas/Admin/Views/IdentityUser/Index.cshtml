@@ -1,0 +1,26 @@
+﻿@model IQueryable<Developer>
+@{ 
+    string strTitle = "Користувачі";
+    ViewBag.Title = strTitle;
+}
+
+<div>
+    <h2>@strTitle</h2>
+    <div>
+        @if (Model.Any())
+			{
+                <div>
+                    @foreach(Developer user in Model)
+				{
+                    <div>
+                        <a asp-area="Admin" asp-controller="IdentityUser" asp-action="Edit" asp-route-id="@user.Id">@user.UserName</a>
+                        <a asp-area="Admin" asp-controller="IdentityUser" asp-action="Delete" asp-route-id="@user.Id">Видалити</a>
+                    </div>
+				}
+                </div>
+			}
+        <div>
+            <a asp-area="Admin" asp-controller="IdentityUser" asp-action="Edit" asp-route-id="">Додати нового користувача</a>
+        </div>
+    </div>
+</div>

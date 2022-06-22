@@ -1,0 +1,37 @@
+﻿@model MeetingViewModel
+@{
+    string strTitle = "Редагувати Зустріч";
+    ViewBag.Title = strTitle;
+}
+
+<div>
+    <h2>@strTitle</h2>
+    <div>
+        <form asp-area="Admin" asp-controller="Meetings" asp-action="Edit" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="All"></div>
+            <input type="hidden" asp-for="@Model.MeetingRef.Id" />
+            <div class="div-box">
+                <label asp-for="@Model.MeetingRef.Title"></label>
+                <input asp-for="@Model.MeetingRef.Title" />
+                <span asp-validation-for="@Model.MeetingRef.Title"></span>
+            </div>
+            <div class="div-box">
+                <label asp-for="@Model.MeetingRef.Url"></label>
+                <input asp-for="@Model.MeetingRef.Url" />
+                <span asp-validation-for="@Model.MeetingRef.Url"></span>
+            </div>
+            <div class="div-box">
+                <label asp-for="@Model.MeetingRef.DateOfMeet"></label>
+                <input asp-for="@Model.MeetingRef.DateOfMeet" />
+                <span asp-validation-for="@Model.MeetingRef.DateOfMeet"></span>
+            </div>
+            <div class="div-box">
+                <label asp-for="@Model.MeetingRef.Description"></label>
+                <input asp-for="@Model.MeetingRef.Description" />
+                <span asp-validation-for="@Model.MeetingRef.Description"></span>
+            </div>
+            @Html.ListBoxFor(x=>x.devsId, Model.SelectedDevs, new { style = "width:200px" })
+            <input type="submit" value="Зберегти" />
+        </form>
+    </div>
+</div>

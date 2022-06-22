@@ -21,13 +21,20 @@ using OnlinePanelForProjectsControl.Models;
 #nullable disable
 #nullable restore
 #line 4 "D:\Projects\OnlinePanelForProjectsControl\Views\_ViewImports.cshtml"
-using OnlinePanelForProjectsControl.Domain.Entities;
+using OnlinePanelForProjectsControl.Domain;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 5 "D:\Projects\OnlinePanelForProjectsControl\Views\_ViewImports.cshtml"
+using OnlinePanelForProjectsControl.Domain.Entities;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 6 "D:\Projects\OnlinePanelForProjectsControl\Views\_ViewImports.cshtml"
 using OnlinePanelForProjectsControl.Models.ViewComponents;
 
 #line default
@@ -41,7 +48,7 @@ using OnlinePanelForProjectsControl.Service;
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"4386204c034e741ab12c6dd3cdcfdbecebbdda4a", @"/Views/Shared/MetatagsPartial.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"d9fdf69cb47a0d00958b81fe95f2fc3dabd0464f", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"5b4bc9956248d380512f6400dd477e135b966b48", @"/Views/_ViewImports.cshtml")]
     public class Views_Shared_MetatagsPartial : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         #pragma warning disable 1998

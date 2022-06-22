@@ -10,6 +10,7 @@ using OnlinePanelForProjectsControl.Domain.Repositories.EntityFramework;
 using OnlinePanelForProjectsControl.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using OnlinePanelForProjectsControl.Domain.Entities;
 
 namespace OnlinePanelForProjectsControl
 {
@@ -24,11 +25,16 @@ namespace OnlinePanelForProjectsControl
 			services.AddTransient<ITextFieldsRepository, EFTextFieldsRepository>();
 			services.AddTransient<IProjectItemsRepository, EFProjectItemsRepository>();
 			services.AddTransient<IProjectTasksRepository, EFProjecTasksRepository>();
+			services.AddTransient<IDevelopersRepository, EFDevelopersRepository>();
+			services.AddTransient<IMeetingsRepository, EFMeetingsRepository>();
+			services.AddTransient<IReportsRepository, EFReportsRepository>();
+			services.AddTransient<IMeetingDevsRepository, EFMeetingDevsRepository>();
+			services.AddTransient<IProjectDevsRepository, EFProjectDevsRepository>();
 			services.AddTransient<DataManager>();
 
 			services.AddDbContext<AppDbContext>(x => x.UseSqlServer(Config.ConnectionString));
 
-			services.AddIdentity<IdentityUser, IdentityRole>(opts =>
+			services.AddIdentity<Developer, IdentityRole>(opts =>
 			{
 				opts.User.RequireUniqueEmail = true;
 				opts.Password.RequiredLength = 6;
@@ -78,6 +84,7 @@ namespace OnlinePanelForProjectsControl
 			{
 				endpoints.MapControllerRoute("admin", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 				endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
+				endpoints.MapAreaControllerRoute("admin", "ADMIN", "{controller=Home}/{action=Index}/{id?}");
 			});
 		}
 	}

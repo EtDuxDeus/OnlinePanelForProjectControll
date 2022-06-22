@@ -6,24 +6,23 @@
                 <header id="header">
                     <h1><a href="/" id="logo">@Config.CompanyName</a></h1>
                     <nav id="nav">
-
                         @if (User.IsInRole("admin"))
                         {
-                            <a asp-area="" asp-controller="Home" asp-action="Index">Главная</a>
-                            <a asp-area="" asp-controller="Projects" asp-action="Index" asp-route-id="">Проекты</a>
-                            <a asp-area="" asp-controller="Home" asp-action="Contacts">Контакты</a>
+                            <a asp-area="" asp-controller="Home" asp-action="Index">Головна</a>
+                            <a asp-area="" asp-controller="Projects" asp-action="Index" asp-route-id="">Проекти</a>
+                            <a asp-area="Admin" asp-controller="Meetings" asp-action="Index" asp-route-id="">Зустрічі</a>
                             <a asp-area="Admin" asp-controller="Home" asp-action="Index" asp-route-id="">Адмін панель</a>
                         }
                         else if (User.IsInRole("user"))
                         {
-                            <a asp-area="" asp-controller="Home" asp-action="Index">Главная</a>
-                            <a asp-area="" asp-controller="Projects" asp-action="Index" asp-route-id="">Проекты</a>
-                            <a asp-area="" asp-controller="Home" asp-action="Contacts">Контакты</a>
+                            <a asp-area="" asp-controller="Home" asp-action="Index">Головна</a>
+                            <a asp-area="" asp-controller="Projects" asp-action="Index" asp-route-id="">Проекти</a>
+                            <a asp-area="" asp-controller="Meetings" asp-action="Index">Зустрічі</a>
                             <a asp-area="" asp-controller="Account" asp-action="Logout">Вийти</a>
                         }
                         else
                         {
-                            <a asp-area="" asp-controller="Account" asp-action="Login">Войти</a>
+                            <a asp-area="" asp-controller="Account" asp-action="Login">Ввійти</a>
                         }
                     </nav>
                 </header>

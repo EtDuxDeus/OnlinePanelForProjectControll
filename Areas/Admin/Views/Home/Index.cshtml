@@ -1,15 +1,19 @@
 ﻿@model IQueryable<ProjectItem>
 @{
-    string strTitle = "Панель администратора";
+    string strTitle = "Панель адміністратора";
     ViewBag.Title = strTitle;
 }
 
 <div>
     <h2>@strTitle</h2>
     <div>
-        <h3>Проекты</h3>
+        <h3>Користувачі</h3>
         <div class="div-box">
-            <a asp-area="Admin" asp-controller="ProjectItems" asp-action="Edit" asp-route-id="">Добавить проект</a>
+            <a asp-area="Admin" asp-controller="IdentityUser" asp-action="Index">Юзери</a>
+        </div>
+        <h3>Проекти</h3>
+        <div class="div-box">
+            <a asp-area="Admin" asp-controller="ProjectItems" asp-action="Edit" asp-route-id="">Додати проект</a>
         </div>
         @if (Model.Any())
         {
@@ -34,9 +38,9 @@
     </div>
     <div class="div-box">
         <h3>Редагувати сторінки сайту</h3>
-        <a asp-area="Admin" asp-controller="TextFields" asp-action="Edit" asp-route-codeWord="PageIndex">Главная</a>
-        <a asp-area="Admin" asp-controller="TextFields" asp-action="Edit" asp-route-codeWord="PageProjects">Проекты</a>
-        <a asp-area="Admin" asp-controller="TextFields" asp-action="Edit" asp-route-codeWord="PageContacts">Контакты</a>
+        <a asp-area="Admin" asp-controller="TextFields" asp-action="Edit" asp-route-codeWord="PageIndex">Головна</a>
+        <a asp-area="Admin" asp-controller="TextFields" asp-action="Edit" asp-route-codeWord="PageProjects">Проекти</a>
+        <a asp-area="Admin" asp-controller="TextFields" asp-action="Edit" asp-route-codeWord="PageContacts">Контакти</a>
     </div>
     <div class="div-box">
         <form asp-area="" asp-controller="Account" asp-action="Logout" method="post">

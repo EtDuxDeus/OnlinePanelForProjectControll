@@ -10,6 +10,7 @@ namespace OnlinePanelForProjectsControl.Domain.Repositories.Abstract
 	{
 		IQueryable<ProjectItem> GetProjectItems();
 		ProjectItem GetProjectItemById(Guid id);
+		public IQueryable<ProjectItem> GetAssignedProjects(string userId);
 		void SaveProjectItem(ProjectItem entity);
 		void DeleteProjectItem(Guid id);
 	}

@@ -28,20 +28,27 @@ using OnlinePanelForProjectsControl.Service;
 #nullable disable
 #nullable restore
 #line 4 "D:\Projects\OnlinePanelForProjectsControl\Views\_ViewImports.cshtml"
-using OnlinePanelForProjectsControl.Domain.Entities;
+using OnlinePanelForProjectsControl.Domain;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 5 "D:\Projects\OnlinePanelForProjectsControl\Views\_ViewImports.cshtml"
+using OnlinePanelForProjectsControl.Domain.Entities;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 6 "D:\Projects\OnlinePanelForProjectsControl\Views\_ViewImports.cshtml"
 using OnlinePanelForProjectsControl.Models.ViewComponents;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"c6926140978c05e05abd68bf86a259374d111620", @"/Views/Shared/SidebarPartial.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"d9fdf69cb47a0d00958b81fe95f2fc3dabd0464f", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"5b4bc9956248d380512f6400dd477e135b966b48", @"/Views/_ViewImports.cshtml")]
     public class Views_Shared_SidebarPartial : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         #line hidden
@@ -69,7 +76,7 @@ using OnlinePanelForProjectsControl.Models.ViewComponents;
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
             WriteLiteral("<div class=\"col-4 col-12-medium\">\r\n    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("cache", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c6926140978c05e05abd68bf86a259374d1116203573", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("cache", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c6926140978c05e05abd68bf86a259374d1116203766", async() => {
                 WriteLiteral("\r\n        ");
 #nullable restore
 #line 3 "D:\Projects\OnlinePanelForProjectsControl\Views\Shared\SidebarPartial.cshtml"

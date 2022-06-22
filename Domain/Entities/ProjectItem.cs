@@ -17,8 +17,17 @@ namespace OnlinePanelForProjectsControl.Domain.Entities
 
 		[Display(Name = "Повний опис проекту")]
 		public override string Text { get; set; }
+		[Display(Name ="Дата початку роботи над проектом")]
+		[DataType(DataType.Date)]
+		public DateTime DateOfStart { get; set; }
+		[Display(Name = "Запланована дата закінчення проекту")]
+		[DataType(DataType.Date)]
+		public DateTime PlannedDateOfEnd { get; set; }
 
 		[Display(Name = "Таски")]
 		public List<ProjectTask> ProjectTasks { get; set; }
+		[Display(Name = "Назначені розробники")]
+		public List<ProjectDevs> Devs { get; set; }
+
 	}
 }

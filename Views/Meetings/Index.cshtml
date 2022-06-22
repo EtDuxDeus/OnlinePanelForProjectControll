@@ -1,0 +1,35 @@
+﻿@model IQueryable<Meeting>
+@{
+    string strTitle = "Зустрічі";
+    ViewBag.Title = strTitle;
+}
+
+<div>
+    <h2>@strTitle</h2>
+    <div>
+        @if (Model.Any())
+        {
+
+        <div>
+            @foreach (Meeting meet in Model)
+            {
+            <div>
+                <label>@meet.Title</label><br>
+                <a href="@meet.Url" target="_blank">Посилання зустрічі</a><br>
+                <label>Назначені користувачі:</label><br>
+                @foreach (Developer dev in meet.Devs)
+                {
+                    <label>@dev.UserName</label>
+                }
+                <br>
+                <label>Дата проведення зустрічі: @meet.DateOfMeet</label><br>
+                <label>Опис зустрічі: @meet.Description</label><br>
+            </div>
+                <hr>
+            }
+        </div>
+
+        }
+        <br />
+    </div>
+</div>

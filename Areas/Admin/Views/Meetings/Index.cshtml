@@ -1,0 +1,39 @@
+﻿@model IQueryable<Meeting>
+@{ 
+    string strTitle = "Зустрічі";
+    ViewBag.Title = strTitle;
+}
+
+<div>
+    <h2>@strTitle</h2>
+    <div>
+        @if (Model.Any())
+			{
+                <div>
+                    @foreach(Meeting meet in Model)
+				{
+                    <div>
+                        <label>@meet.Title</label><br>
+                        <label>Назначені користувачі:</label><br>
+                        @foreach (Developer dev in meet.Devs)
+                        {
+                            <label>@dev.UserName</label>
+                        }
+                        <br>
+                        <a href="@meet.Url" target="_blank">Посилання зустрічі</a><br>
+                        <label>Час проведення зустрічі: @meet.DateOfMeet</label><br>
+                        <label>Опис зустрічі: @meet.Description</label><br>
+                        <a asp-area="Admin" asp-controller="Meetings" asp-action="Edit" asp-route-id="@meet.Id">Редагувати</a>
+                        <form style="display: inline-block;" id="form-@meet.Id" asp-area="Admin" asp-controller="Meetings" asp-action="Delete" method="post">
+                            <input type="hidden" name="id" value="@meet.Id">
+                            <a href="#" onclick="document.getElementById('form-@meet.Id').submit();">Видалити</a>
+                        </form>
+                    </div>
+                    <hr>
+				}
+                </div>
+			}
+        <br />
+         <a asp-area="Admin" asp-controller="Meetings" asp-action="Edit" asp-route-id="">Додати зустріч</a>
+    </div>
+</div>

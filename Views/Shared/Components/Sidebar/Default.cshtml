@@ -3,20 +3,20 @@
 @if (Model?.Any() == true)
 {
     <section>
-        <h2>Проекты</h2>
+        <h2>Проекти</h2>
         <ul class="small-image-list">
             @foreach (ProjectItem entity in Model)
             {
                 <li>
                     <a asp-area="" asp-controller="Projects" asp-action="Index" asp-route-id="@entity.Id">
-                        <img src="~/images/@entity.TitleImagePath" alt="" class="left" />
+                        @if (@entity.TitleImagePath != null)
+                        {
+                            <img width="100" src="~/images/@entity.TitleImagePath" alt="" class="left" />
+                        }
+                        <h3>
+                            @entity.Title
+                        </h3>
                     </a>
-                    <h4>
-                        @entity.Title
-                    </h4>
-                    <p>
-                        @entity.Subtitle
-                    </p>
                 </li>
             }
         </ul>

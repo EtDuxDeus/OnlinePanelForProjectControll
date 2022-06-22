@@ -1,60 +1,114 @@
-﻿@model ProjectItem
+﻿@model ProjectItemViewModel
 @{
-    ViewBag.Title = Model.MetaTitle;
-    ViewBag.Description = Model.MetaDescription;
-    ViewBag.Keywords = Model.MetaKeywords;
+    ViewBag.Title = Model.ProjectItem.MetaTitle;
+    ViewBag.Description = Model.ProjectItem.MetaDescription;
+    ViewBag.Keywords = Model.ProjectItem.MetaKeywords;
 }
 <div>
     <h2>
-        @Model.Title
+        @Model.ProjectItem.Title
     </h2>
-    <h2>
-        @Model.Subtitle
-    </h2>
+    <h3>
+        @Model.ProjectItem.Subtitle
+    </h3>
     <div>
-        <img class="img-block" src="~/images/@Model.TitleImagePath" />
+        <img class="big-image-list" src="~/images/@Model.ProjectItem.TitleImagePath" />
     </div>
-        <table class="TaskTable">
-            <thead>
-            <th>
-                <label>Назва задачі</label>
-            </th>
-            <th>
-                <label>Опис задачі</label>
-            </th>
-            <th>
-                <label>Дата Початку</label>
-            </th>
-            <th>
-                <label">Дата закінчення</label">
-            </th>
-            <th>
-                <label>Задача виконана?</label>
-            </th>
-            </thead>
+    <div>
+        <h3 style="text-size-adjust:150%;">Опис проекту:</h3>
+        @Html.Raw(Model.ProjectItem.Text)
+    </div>
+    <table style="margin-top:20px; ">
+        <thead>
+        <th>
+            <label>Назва задачі</label>
+        </th>
+        <th>
+            <label>Виділений час на задачу<label>
+        </th>
+        <th>
+            <label">Затрачений час на задачу</label">
+        </th>
+        <th>
+            <label>Статус задачі</label>
+        </th>
+        <th>
+            <label>Розробник</label>
+        </th>
+        </thead>
 
-            @for (int i = 0; i < Model.ProjectTasks.Count; i++)
-            {
-                <tr>
+        @for (int i = 0; i < Model.ProjectItem.ProjectTasks.Count; i++)
+        {
+
+            <tr>
+                <td>
+                    <label>@Model.ProjectItem.ProjectTasks[i].TaskName</label>
+                </td>
+                <td>
+                    <input readonly asp-for="@Model.ProjectItem.ProjectTasks[i].EstimatedTime" />
+                </td>
+                <td>
+                    <input readonly asp-for="@Model.ProjectItem.ProjectTasks[i].SpendedTime" />
+                </td>
+                <td>
+                    <input disabled type="checkbox" asp-for="@Model.ProjectItem.ProjectTasks[i].isFinished" />
+                </td>
+                <td>
+                    @if (Model.ProjectItem.ProjectTasks[i].Developer != null)
+                    {
+                        <label>@Model.ProjectItem.ProjectTasks[i].Developer.UserName</label>
+                    }
+                    else
+                    {
+                        <label>Розробник не назначений</label>
+                    }
+                </td>
+                @if (User.IsInRole("admin"))
+                {
                     <td>
-                        <label>@Model.ProjectTasks[i].TaskName</label>
+                        <a asp-area="Admin" asp-controller="ProjectTasks" asp-action="Edit" asp-route-id="@Model.ProjectItem.ProjectTasks[i].TaskID" asp-route-projectId="@Model.ProjectItem.Id">Редагувати</a>
+                        <a asp-area="Admin" asp-controller="ProjectTasks" asp-action="Delete" asp-route-id="@Model.ProjectItem.ProjectTasks[i].TaskID">Видалити</a>
                     </td>
+                }
+                else
+                {
                     <td>
-                        @Html.Raw(Model.ProjectTasks[i].TaskDescription)
+                        <a asp-area="" asp-controller="ProjectTask" asp-action="Edit" asp-route-id="@Model.ProjectItem.ProjectTasks[i].TaskID" asp-route-projectId="@Model.ProjectItem.Id">Редагувати</a>
                     </td>
-                    <td>
-                        <input readonly asp-for="@Model.ProjectTasks[i].DateOfStart" />
-                    </td>
-                    <td>
-                        <input readonly asp-for="@Model.ProjectTasks[i].DateOfEnd" />
-                    </td>
-                    <td>
-                        <input readonly type="checkbox" asp-for="@Model.ProjectTasks[i].isFinished" />
-                    </td>
-                </tr>
-            }
-        </table>
-    </div>
-<div>
-    @Html.Raw(Model.Text)
+                }
+
+            </tr>
+
+        }
+    </table>
+    @if (User.IsInRole("admin"))
+    {
+        <a asp-area="Admin" asp-controller="ProjectTasks" asp-action="Edit" asp-route-projectId="@Model.ProjectItem.Id">Додати задачу</a>
+        <br>
+    }
+    <h3 style="margin-top:10px; margin-bottom:10px">Назначені розробники:</h3>
+    @for (int i = 0; i < Model.AssignedDevs.Count; i++)
+    {
+        <label>@Model.AssignedDevs[i].UserName, </label>
+    }
+    @if (User.IsInRole("admin") & Model.NewDev.Count() > 0)
+    {
+        <form style="margin-top:-20px" asp-area="Admin" asp-controller="ProjectItems" asp-action="AddDeveloperToProject" asp-route-projectId="@Model.ProjectItem.Id" method="post">
+            <div asp-validation-summary="All"></div>
+            <div class="div-box">
+                <select name="devId" asp-items="Model.NewDev"></select>
+            </div>
+            <input type="submit" value="Додати розробника" />
+        </form>
+    }
+    <br>
+    @if (User.IsInRole("admin"))
+    {
+        <a asp-area="Admin" asp-controller="Reports" asp-action="Index" asp-route-id="@Model.ProjectItem.Id"><h3>Отримати звіт по проекту в Pdf форматі</h3></a>
+    }
+    else
+    {
+        <a asp-area="" asp-controller="Reports" asp-action="Index" asp-route-id="@Model.ProjectItem.Id">Отримати звіт по проекту в Pdf форматі</a>
+    }
 </div>
+

@@ -21,8 +21,14 @@ namespace OnlinePanelForProjectsControl.Domain.Repositories.EntityFramework
 		}
 		public IQueryable<ProjectTask> GetAllAsignedTasks(Guid projectId)
 		{
-			return context.ProjectTasks.Where(x=>x.ProjectId == projectId);
+			return context.ProjectTasks.Where(x=>x.ProjectId == projectId).Include(x=>x.ProjectItem);
 		}
+
+		public IQueryable<ProjectTask> GetAllDevAssignedTasks(string userId)
+		{
+			return context.ProjectTasks.Where(x => x.DeveloperId == userId).Include(x => x.Developer).Include(x =>x.ProjectItem);
+		}
+
 		public void SaveProjectTask(ProjectTask entity)
 		{
 			if (entity.TaskID == default)

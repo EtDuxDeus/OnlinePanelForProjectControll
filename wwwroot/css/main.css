@@ -76,11 +76,7 @@ h1, h2, h3, h4 {
   color: #007897;
   font-weight: normal; }
 
-h1 {
-  text-transform: lowercase; }
-
 h2 {
-  text-transform: lowercase;
   font-size: 1.6em;
   letter-spacing: -1px;
   margin-bottom: 1em; }
@@ -1188,7 +1184,7 @@ ul.link-list li {
       color: #A6A88F; } }
 
 .TaskTable {
-  border: 5px; }
+  border: 1px solid black; }
 
 .div-box {
   padding: 15px 0; }

@@ -3,15 +3,16 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using System.Threading.Tasks;
 using OnlinePanelForProjectsControl.Models;
+using OnlinePanelForProjectsControl.Domain.Entities;
 
 namespace OnlinePanelForProjectsControl.Controllers
 {
     [Authorize]
 	public class AccountController : Controller
 	{
-        private readonly UserManager<IdentityUser> userManager;
-        private readonly SignInManager<IdentityUser> signInManager;
-        public AccountController(UserManager<IdentityUser> userMgr, SignInManager<IdentityUser> signinMgr)
+        private readonly UserManager<Developer> userManager;
+        private readonly SignInManager<Developer> signInManager;
+        public AccountController(UserManager<Developer> userMgr, SignInManager<Developer> signinMgr)
         {
             userManager = userMgr;
             signInManager = signinMgr;
@@ -29,7 +30,7 @@ namespace OnlinePanelForProjectsControl.Controllers
         {
             if (ModelState.IsValid)
             {
-                IdentityUser user = await userManager.FindByNameAsync(model.UserName);
+                Developer user = await userManager.FindByNameAsync(model.UserName);
                 if (user != null)
                 {
                     await signInManager.SignOutAsync();

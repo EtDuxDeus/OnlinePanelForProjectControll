@@ -1,4 +1,4 @@
-﻿@model ProjectTask
+﻿@model ProjectTaskViewModel
 @{ 
     string strTitle = "Редагувати завдання";
     ViewBag.Title = strTitle;
@@ -10,39 +10,37 @@
     <h2>@strTitle</h2>
     <div>
         <form asp-area="Admin" asp-controller="ProjectTasks" asp-action="Edit" method="post" enctype="multipart/form-data">
-            <input type="hidden" asp-for="TaskID" />
-            <input type="hidden" asp-for="ProjectItem" />
-
+            <input type="hidden" asp-for="@Model.ProjectTaskReference.TaskID" />
+            <input type="hidden" asp-for="@Model.ProjectTaskReference.ProjectItem" />
+            <input type="hidden" asp-for="@Model.ProjectTaskReference.ProjectId" />
             <div asp-validation-summary="All"></div>
             <div class="div-box">
-                <label asp-for="TaskName"></label>
-                <input asp-for="TaskName"/>
-                <span asp-validation-for="TaskName"></span>
+                <label asp-for="@Model.ProjectTaskReference.TaskName"></label>
+                <input asp-for="@Model.ProjectTaskReference.TaskName" />
+                <span asp-validation-for="@Model.ProjectTaskReference.TaskName"></span>
             </div>
             <div class="div-box">
-                <label asp-for="ProjectId"></label>
-                <input asp-for="ProjectId" />
-                <span asp-validation-for="ProjectId"></span>
+                <select name="devId" asp-items="@Model.SelectedDev"></select>
             </div>
             <div class="div-box">
-                <label asp-for="TaskDescription"></label>
-                <textarea asp-for="TaskDescription"></textarea>
-                <span asp-validation-for="TaskDescription"></span>
+                <label asp-for="@Model.ProjectTaskReference.TaskDescription"></label>
+                <textarea asp-for="@Model.ProjectTaskReference.TaskDescription"></textarea>
+                <span asp-validation-for="@Model.ProjectTaskReference.TaskDescription"></span>
             </div>
             <div class="div-box">
-                <label asp-for="DateOfStart"></label>
-                <input asp-for="DateOfStart" />
-                <span asp-validation-for="DateOfStart"></span>
+                <label asp-for="@Model.ProjectTaskReference.EstimatedTime"></label>
+                <input asp-for="@Model.ProjectTaskReference.EstimatedTime" />
+                <span asp-validation-for="@Model.ProjectTaskReference.EstimatedTime"></span>
             </div>
             <div class="div-box">
-                <label asp-for="DateOfEnd"></label>
-                <input asp-for="DateOfEnd" />
-                <span asp-validation-for="DateOfEnd"></span>
+                <label asp-for="@Model.ProjectTaskReference.SpendedTime"></label>
+                <input asp-for="@Model.ProjectTaskReference.SpendedTime" />
+                <span asp-validation-for="@Model.ProjectTaskReference.SpendedTime"></span>
             </div>
             <div class="div-box">
-                <label asp-for="isFinished"></label>
-                <input type="checkbox" asp-for="isFinished" />
-                <span asp-validation-for="isFinished"></span>
+                <label asp-for="@Model.ProjectTaskReference.isFinished"></label>
+                <input type="checkbox" asp-for="@Model.ProjectTaskReference.isFinished" />
+                <span asp-validation-for="@Model.ProjectTaskReference.isFinished"></span>
             </div>
             <input type="submit" value="Зберегти" />
         </form>
@@ -52,7 +50,7 @@
 
 <script>
     window.onload = function() {
-        var newCKEdit = CKEDITOR.replace('@Html.IdFor(x=>x.TaskDescription)');
+        var newCKEdit = CKEDITOR.replace('@Html.IdFor(x=>x.ProjectTaskReference.TaskDescription)');
         newCKEdit.updateElement();
     }
 </script>

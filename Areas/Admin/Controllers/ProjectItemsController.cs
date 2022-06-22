@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using OnlinePanelForProjectsControl.Controllers;
 using OnlinePanelForProjectsControl.Domain;
 using OnlinePanelForProjectsControl.Domain.Entities;
+using OnlinePanelForProjectsControl.Models.ViewComponents;
 using OnlinePanelForProjectsControl.Service;
 using System;
 using System.Collections.Generic;
@@ -25,7 +27,7 @@ namespace OnlinePanelForProjectsControl.Areas.Admin.Controllers
 
         public IActionResult Edit(Guid id)
         {
-            var entity = id == default ? new ProjectItem() : dataManager.ProjectItems.GetProjectItemById(id);
+            var entity = id == default ? new ProjectItem() { DateOfStart = DateTime.UtcNow, PlannedDateOfEnd=DateTime.UtcNow} : dataManager.ProjectItems.GetProjectItemById(id);
             if(entity.ProjectTasks == null)
 			{
                 entity.ProjectTasks = new List<ProjectTask>();
@@ -33,10 +35,22 @@ namespace OnlinePanelForProjectsControl.Areas.Admin.Controllers
             }
             return View(entity);
         }
+
+        [HttpPost]
+        public IActionResult AddDeveloperToProject(Guid projectId, string devId)
+        {
+            var entity = dataManager.ProjectItems.GetProjectItemById(projectId);
+            var dev = dataManager.IdentityUsers.GetUserById(devId);
+
+            dataManager.ProjectDevs.SaveProjectDev(new ProjectDevs { Id = new Guid(), DevId = devId, DeveloperItem = dataManager.IdentityUsers.GetUserById(devId),
+                ProjectId = projectId, Project = dataManager.ProjectItems.GetProjectItemById(projectId) });
+
+            return RedirectToAction(nameof(ProjectsController.Index), nameof(ProjectsController).CutController(), new { area = "default" ,id=projectId});
+		}
+
         [HttpPost]
         public IActionResult Edit(ProjectItem model, IFormFile titleImageFile)
         {
-            model.ProjectTasks = dataManager.ProjectTasks.GetAllAsignedTasks(model.Id).ToList();
             if (ModelState.IsValid)
             {
                 if (titleImageFile != null)

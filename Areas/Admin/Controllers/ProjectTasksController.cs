@@ -1,8 +1,11 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using OnlinePanelForProjectsControl.Controllers;
 using OnlinePanelForProjectsControl.Domain;
 using OnlinePanelForProjectsControl.Domain.Entities;
+using OnlinePanelForProjectsControl.Models;
 using OnlinePanelForProjectsControl.Service;
 using System;
 using System.Collections.Generic;
@@ -26,16 +29,22 @@ namespace OnlinePanelForProjectsControl.Areas.Admin.Controllers
 		{
 			var entity = id == default ? new ProjectTask() : dataManager.ProjectTasks.GetProjectTaskById(id);
 			entity.ProjectId = projectId;
-			entity.ProjectItem = dataManager.ProjectItems.GetProjectItemById(projectId); ;
-			return View(entity);
+			entity.ProjectItem = dataManager.ProjectItems.GetProjectItemById(projectId);
+			List<Developer> devs = new List<Developer>();
+			devs = dataManager.ProjectDevs.GetAllDevelopersFromProject(entity.ProjectId).ToList();
+			ProjectTaskViewModel model = new ProjectTaskViewModel { ProjectTaskReference = entity, SelectedDev = new SelectList(devs,"Id","UserName") };
+			return View(model);
 		}
 		[HttpPost]
-		public IActionResult Edit(ProjectTask model)
+		public IActionResult Edit(ProjectTaskViewModel model, string devId)
 		{
 			if (ModelState.IsValid)
 			{
-				dataManager.ProjectTasks.SaveProjectTask(model);
-				return RedirectToAction(nameof(HomeController.Index), nameof(HomeController).CutController());
+				var dev = dataManager.IdentityUsers.GetUserById(devId);
+				model.ProjectTaskReference.Developer = dev;
+				model.ProjectTaskReference.DeveloperId = devId;
+				dataManager.ProjectTasks.SaveProjectTask(model.ProjectTaskReference);
+				return RedirectToAction(nameof(ProjectsController.Index), nameof(ProjectsController).CutController(), new { area = "default", id = model.ProjectTaskReference.ProjectId });
 			}
 			return View(model);
 		}

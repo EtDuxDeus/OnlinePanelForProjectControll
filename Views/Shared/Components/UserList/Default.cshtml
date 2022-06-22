@@ -1,0 +1,9 @@
+﻿@model IQueryable<Developer>
+
+@if(Model?.Any() == true)
+{
+	@foreach(Developer entity in Model)
+	{
+		<option value="@entity.Id">@entity.UserName</option>
+	}
+}

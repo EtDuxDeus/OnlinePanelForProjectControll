@@ -49,14 +49,14 @@ namespace OnlinePanelForProjectsControl.Migrations
                         new
                         {
                             Id = "8af10569-b018-4fe7-a380-7d6a14c70b74",
-                            ConcurrencyStamp = "212acb4b-3a5c-417b-8e6d-6a83a29e9498",
+                            ConcurrencyStamp = "c7daaae1-0a0d-4b25-a6dc-8980efb2771c",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = "f917fd6d-a7f9-4212-bbe7-c193cf061ef0",
-                            ConcurrencyStamp = "c466faff-84f4-4bf1-8bf7-69a35d835ea1",
+                            ConcurrencyStamp = "e00febf0-0de6-4b0c-b2fa-77f84d0e93f2",
                             Name = "user",
                             NormalizedName = "USER"
                         });
@@ -84,105 +84,6 @@ namespace OnlinePanelForProjectsControl.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetRoleClaims");
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(256)")
-                        .HasMaxLength(256);
-
-                    b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("NormalizedEmail")
-                        .HasColumnType("nvarchar(256)")
-                        .HasMaxLength(256);
-
-                    b.Property<string>("NormalizedUserName")
-                        .HasColumnType("nvarchar(256)")
-                        .HasMaxLength(256);
-
-                    b.Property<string>("PasswordHash")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("SecurityStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(256)")
-                        .HasMaxLength(256);
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedEmail")
-                        .HasName("EmailIndex");
-
-                    b.HasIndex("NormalizedUserName")
-                        .IsUnique()
-                        .HasName("UserNameIndex")
-                        .HasFilter("[NormalizedUserName] IS NOT NULL");
-
-                    b.ToTable("AspNetUsers");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "3b62472e-4f66-49fa-a20f-e7685b9565d8",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "452e4f56-a6ae-4ae2-84fd-0f7c685578f2",
-                            Email = "my@email.com",
-                            EmailConfirmed = true,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "MY@EMAIl.COM",
-                            NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEHmsUmJyDy8tMpb1fRugilcvbF4sMdnoQ2tAckEh4FuK5Z6zqzvRECCmz88VWxUUJA==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "",
-                            TwoFactorEnabled = false,
-                            UserName = "admin"
-                        },
-                        new
-                        {
-                            Id = "451219dc-97d0-4f3a-90d3-a6b3a0d36c6b",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "6617c9d8-c9b8-46e7-be2e-38744b8948c3",
-                            Email = "user@email.com",
-                            EmailConfirmed = true,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "USER@EMAIL.COM",
-                            NormalizedUserName = "USER",
-                            PasswordHash = "AQAAAAEAACcQAAAAEG2sgHVXbXORbtn0nsNfyQl6BlJpB4+xPWGuKOyHqy0c7/QagGjN1eLnCoifLK+cpA==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "",
-                            TwoFactorEnabled = false,
-                            UserName = "user"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -248,6 +149,16 @@ namespace OnlinePanelForProjectsControl.Migrations
                     b.HasData(
                         new
                         {
+                            UserId = "90b3e19e-0c62-4a3a-a714-7aabbbf8bab7",
+                            RoleId = "8af10569-b018-4fe7-a380-7d6a14c70b74"
+                        },
+                        new
+                        {
+                            UserId = "0722f26e-3067-4740-b8ec-98ef8e379bf7",
+                            RoleId = "f917fd6d-a7f9-4212-bbe7-c193cf061ef0"
+                        },
+                        new
+                        {
                             UserId = "3b62472e-4f66-49fa-a20f-e7685b9565d8",
                             RoleId = "8af10569-b018-4fe7-a380-7d6a14c70b74"
                         },
@@ -277,6 +188,213 @@ namespace OnlinePanelForProjectsControl.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("OnlinePanelForProjectsControl.Domain.Entities.Developer", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<Guid?>("MeetingId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MeetingId");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.ToTable("AspNetUsers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "3b62472e-4f66-49fa-a20f-e7685b9565d8",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "c3b35d56-1f26-4063-a542-9be4e52dd846",
+                            Email = "minerukraien@gmail.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "minerukraine@GMAIl.COM",
+                            NormalizedUserName = "ADMIN",
+                            PasswordHash = "AQAAAAEAACcQAAAAENzPI6JKWgqmRHov4gVRhu3+yhGpD386UV28f/rC2OU7vZB0QBu3Nc26xirNYHmY5A==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "",
+                            TwoFactorEnabled = false,
+                            UserName = "admin"
+                        },
+                        new
+                        {
+                            Id = "451219dc-97d0-4f3a-90d3-a6b3a0d36c6b",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "e18c4403-aedd-4c4c-b59f-5aad5789e1d1",
+                            Email = "user@email.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "USER@EMAIL.COM",
+                            NormalizedUserName = "USER",
+                            PasswordHash = "AQAAAAEAACcQAAAAEAl09q1smBt/eAKEPUp4RaEj4aGq9u83maEs1xSa9D0GqysYMpnNtn4j72FNIfzLsg==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "",
+                            TwoFactorEnabled = false,
+                            UserName = "user"
+                        },
+                        new
+                        {
+                            Id = "90b3e19e-0c62-4a3a-a714-7aabbbf8bab7",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "68bc7ccc-e27b-45be-8efe-d77f0ee6121e",
+                            Email = "my@email.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "MY@EMAIl.COM",
+                            NormalizedUserName = "SNAILKICK",
+                            PasswordHash = "AQAAAAEAACcQAAAAEK/Juuqc3WdcQ7eoBCSvtX/nhAhxEIICYQFDEjwGwFokjEQhmQ6+kMUy2ya7TpH8Pg==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "",
+                            TwoFactorEnabled = false,
+                            UserName = "SnailKick"
+                        },
+                        new
+                        {
+                            Id = "0722f26e-3067-4740-b8ec-98ef8e379bf7",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "eb5f71d0-af2e-4e89-8e6b-06b6395bfdd1",
+                            Email = "dev@email.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "DEV@EMAIl.COM",
+                            NormalizedUserName = "DEVELOPER",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJ8DTFmegigANxfM0NSJpqZDPzeCCVy7EvAszEwth2KPY4ZU7OeKTjcsSkBSgmIC0g==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "",
+                            TwoFactorEnabled = false,
+                            UserName = "Developer"
+                        });
+                });
+
+            modelBuilder.Entity("OnlinePanelForProjectsControl.Domain.Entities.Meeting", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DateOfMeet")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Url")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Meetings");
+                });
+
+            modelBuilder.Entity("OnlinePanelForProjectsControl.Domain.Entities.MeetingDevs", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("DevId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DeveloperId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<Guid>("MeetingId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DeveloperId");
+
+                    b.HasIndex("MeetingId");
+
+                    b.ToTable("MeetingDevs");
+                });
+
+            modelBuilder.Entity("OnlinePanelForProjectsControl.Domain.Entities.ProjectDevs", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("DevId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DeveloperItemId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<Guid>("ProjectId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DeveloperItemId");
+
+                    b.HasIndex("ProjectId");
+
+                    b.ToTable("ProjectDevs");
+                });
+
             modelBuilder.Entity("OnlinePanelForProjectsControl.Domain.Entities.ProjectItem", b =>
                 {
                     b.Property<Guid>("Id")
@@ -284,6 +402,9 @@ namespace OnlinePanelForProjectsControl.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("DateAdded")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateOfStart")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("MetaDescription")
@@ -294,6 +415,9 @@ namespace OnlinePanelForProjectsControl.Migrations
 
                     b.Property<string>("MetaTitle")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("PlannedDateOfEnd")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Subtitle")
                         .HasColumnType("nvarchar(max)");
@@ -319,14 +443,17 @@ namespace OnlinePanelForProjectsControl.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("DateOfEnd")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("DeveloperId")
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Property<DateTime>("DateOfStart")
-                        .HasColumnType("datetime2");
+                    b.Property<int>("EstimatedTime")
+                        .HasColumnType("int");
 
                     b.Property<Guid>("ProjectId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("SpendedTime")
+                        .HasColumnType("int");
 
                     b.Property<string>("TaskDescription")
                         .HasColumnType("nvarchar(max)");
@@ -339,21 +466,11 @@ namespace OnlinePanelForProjectsControl.Migrations
 
                     b.HasKey("TaskID");
 
+                    b.HasIndex("DeveloperId");
+
                     b.HasIndex("ProjectId");
 
                     b.ToTable("ProjectTasks");
-
-                    b.HasData(
-                        new
-                        {
-                            TaskID = new Guid("a37182eb-dabb-43e0-8952-c662fa5e634e"),
-                            DateOfEnd = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOfStart = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ProjectId = new Guid("713dcd88-126d-4671-1ed1-08da40a5c328"),
-                            TaskDescription = "Опис таску",
-                            TaskName = "Тест Тасков",
-                            isFinished = false
-                        });
                 });
 
             modelBuilder.Entity("OnlinePanelForProjectsControl.Domain.Entities.TextField", b =>
@@ -399,23 +516,15 @@ namespace OnlinePanelForProjectsControl.Migrations
                         {
                             Id = new Guid("63dc8fa6-07ae-4391-8916-e057f71239ce"),
                             CodeWord = "PageIndex",
-                            DateAdded = new DateTime(2022, 5, 29, 18, 1, 25, 650, DateTimeKind.Utc).AddTicks(456),
+                            DateAdded = new DateTime(2022, 6, 21, 21, 0, 41, 431, DateTimeKind.Utc).AddTicks(5741),
                             Text = "Содержание заполняется администратором",
                             Title = "Главная"
                         },
                         new
                         {
-                            Id = new Guid("ccc0d57c-b438-499c-964b-1a542a908894"),
-                            CodeWord = "PageProjects",
-                            DateAdded = new DateTime(2022, 5, 29, 18, 1, 25, 650, DateTimeKind.Utc).AddTicks(1292),
-                            Text = "Содержание заполняется администратором",
-                            Title = "Проекты"
-                        },
-                        new
-                        {
                             Id = new Guid("4aa76a4c-c59d-409a-84c1-06e6487a137a"),
                             CodeWord = "PageContacts",
-                            DateAdded = new DateTime(2022, 5, 29, 18, 1, 25, 650, DateTimeKind.Utc).AddTicks(1329),
+                            DateAdded = new DateTime(2022, 6, 21, 21, 0, 41, 431, DateTimeKind.Utc).AddTicks(6595),
                             Text = "Содержание заполняется администратором",
                             Title = "Контакты"
                         });
@@ -432,7 +541,7 @@ namespace OnlinePanelForProjectsControl.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("OnlinePanelForProjectsControl.Domain.Entities.Developer", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -441,7 +550,7 @@ namespace OnlinePanelForProjectsControl.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("OnlinePanelForProjectsControl.Domain.Entities.Developer", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -456,7 +565,7 @@ namespace OnlinePanelForProjectsControl.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("OnlinePanelForProjectsControl.Domain.Entities.Developer", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -465,15 +574,52 @@ namespace OnlinePanelForProjectsControl.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("OnlinePanelForProjectsControl.Domain.Entities.Developer", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("OnlinePanelForProjectsControl.Domain.Entities.Developer", b =>
+                {
+                    b.HasOne("OnlinePanelForProjectsControl.Domain.Entities.Meeting", null)
+                        .WithMany("Devs")
+                        .HasForeignKey("MeetingId");
+                });
+
+            modelBuilder.Entity("OnlinePanelForProjectsControl.Domain.Entities.MeetingDevs", b =>
+                {
+                    b.HasOne("OnlinePanelForProjectsControl.Domain.Entities.Developer", "Developer")
+                        .WithMany()
+                        .HasForeignKey("DeveloperId");
+
+                    b.HasOne("OnlinePanelForProjectsControl.Domain.Entities.Meeting", "Meeting")
+                        .WithMany()
+                        .HasForeignKey("MeetingId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("OnlinePanelForProjectsControl.Domain.Entities.ProjectDevs", b =>
+                {
+                    b.HasOne("OnlinePanelForProjectsControl.Domain.Entities.Developer", "DeveloperItem")
+                        .WithMany()
+                        .HasForeignKey("DeveloperItemId");
+
+                    b.HasOne("OnlinePanelForProjectsControl.Domain.Entities.ProjectItem", "Project")
+                        .WithMany("Devs")
+                        .HasForeignKey("ProjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("OnlinePanelForProjectsControl.Domain.Entities.ProjectTask", b =>
                 {
+                    b.HasOne("OnlinePanelForProjectsControl.Domain.Entities.Developer", "Developer")
+                        .WithMany("AssignedTasks")
+                        .HasForeignKey("DeveloperId");
+
                     b.HasOne("OnlinePanelForProjectsControl.Domain.Entities.ProjectItem", "ProjectItem")
                         .WithMany("ProjectTasks")
                         .HasForeignKey("ProjectId")
